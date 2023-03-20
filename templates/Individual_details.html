@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container details">
+    <form action="/Individual_Report" method="post">
+        <div class="col-md-5 col-lg-4 order-md-last table">
+            <h4 class="d-flex justify-content-between align-items-center mb-3" style="margin-bottom: 2rem;">
+                <span class="questions_heading">Select Employee to review his input</span>
+            </h4>
+            {% for Element in SortByList%}
+            <div class="button_Questions_class" style="margin-bottom: 3rem;">
+                <button class="w-100 btn btn-primary button_view_question" name="SortBy" value="{{Element['DEDUCTION']}}" type="submit" formaction="/for_refresh">{{Element['DEDUCTION']}}</button>
+            </div>
+            {% endfor %}
+            
+            
+            <div class="dropdownn" style="width: 10%; height: 100%; float: right;">
+                <button class="dropbtn" style="color: black;">Sort By<i class="fa fa-caret-down" style="margin-left: 1rem;"></i></button>
+                <div class="dropdownn-content">
+                    <a href="">Name</a>
+                    <a href="">Department</a>
+                    <a href="">Deduction 1</a>
+                    <a href="">Deduction 2</a>
+                </div>
+            </div>
+            <br><br><br>
+
+            <ul class="list-group mb-3">
+                
+                {% for employee_data in employees_data %}
+                  {% if employee_data == employees_data[0] %}
+                          <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+                      {% else %}
+                          <li class="list-group-item d-flex justify-content-between lh-sm">
+                      {% endif %}
+                        <div>
+                            
+                            <strong style="color: maroon;">Department: {{employee_data['emp_department']}}</strong>
+                            <p style="margin-top: 0.5rem; font-size: larger;">  Employee Name: {{employee_data['emp_name']}}<br>Designation: {{employee_data['emp_designation']}}
+                                <span style="float: right;">
+                                    {% set employee_dat = employee_data['emp_id'] |string + ',' + employee_data['emp_name'] + ',' + employee_data['emp_designation'] + ',' + employee_data['emp_department'] + ',' + test_number |string +',' + SortByName%}
+                                    <button class="btn button_question" type="submit" name="employee_dat" value="{{employee_dat}}">Select</button>
+                                </span>
+                            </p>
+                        </div>
+                        </li>
+                {% endfor %}
+                    </ul>
+                </div>
+                <div class="button_Questions_class" style="margin-bottom: 3rem;">
+                    <button class="w-100 btn btn-primary button_view_question" name="test_number" value="{{test_number}},{{SortByName}}" type="submit" formaction="/IndividualOrCollective">Go Back</button>
+                </div>
+    </form>
+    
+  </form>
+</div>
+
+{% endblock %}

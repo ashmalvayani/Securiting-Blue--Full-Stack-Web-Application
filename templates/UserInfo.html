@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/UserInfo" method="post" name="myForm">
+        <h3 class="form_heading">Employee Login</h3>
+        <input type="text" id="name" class="fadeIn second" name="name" placeholder="Employee Name" style="margin-top: 2rem;">
+        <input type="text" id="designation" class="fadeIn second" name="designation" placeholder="Employee Designation" style="margin-top: 0rem;">
+        <input type="text" id="department" class="fadeIn second" name="department" placeholder="Department" style="margin-top: 0rem;">
+        <div style="color: red;">
+          {{message}}
+        </div>
+        <input type="submit" class="fadeIn fourth" value="Start Test" style="margin-top: 3rem;" onclick="return myValidation()">
+      </form>
+      <div id="formFooter">
+      </div>
+  
+    </div>
+  </div>
+
+
+<script>
+    function myValidation(){
+        var name = myForm.name.value
+        var designation = myForm.designation.value
+        var department = myForm.department.value
+
+        if(name == '' || designation == '' || department == ''){
+            alert("Please enter the valid information")
+            return false
+        }
+        return true
+    }
+</script>
+
+
+{% endblock %}

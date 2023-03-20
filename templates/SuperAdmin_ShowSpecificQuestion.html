@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container details">
+    <form action="/SuperAdmin_ViewSpecificQuestion" method="post" class="view_question_form_class">
+        <div class="col-md-5 col-lg-4 order-md-last table">
+            <h4 class="d-flex justify-content-between align-items-center mb-3" style="margin-bottom: 2rem;">
+                <span class="questions_heading">Test - {{test['test_subject']}}</span> 
+            </h4>
+            <ul class="list-group mb-3">
+              
+              <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+                <strong style="color: black; font-size: larger;">Question #{{question['question_no']}}: {{question['question_text']}}
+                </strong>
+              </li>
+                <br>
+                {% for scenario in scenarios %}
+                    <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 1px solid #333;">
+                    <div>
+                        <br>
+                        <strong style="color: maroon;">Scenario #{{scenario['scenario_id']}}</strong>
+                        <p style="font-size: larger;"></p>{{scenario['scenario_options']}}</p>
+                        <hr>
+                    </div>
+                    <div>
+                        <strong style="color: maroon;">Deduction for scenario #{{scenario['scenario_id']}}</strong>
+                        <p style="font-size: larger;">{{scenario['deduction']}}</p>
+                    </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div>
+        <hr>
+        <button class="w-100 btn btn-primary button_view_question" name="operation" value="{{test['test_no']}},View Test" type="submit" formaction="/SuperAdmin_LaunchTest">Go Back</button>
+    </form>
+</div>
+
+{% endblock %}

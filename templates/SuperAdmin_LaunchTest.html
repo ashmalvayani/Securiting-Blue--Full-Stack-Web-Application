@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container details">
+    <form action="/SuperAdmin_LaunchTest" method="post">
+        <div class="col-md-5 col-lg-4 order-md-last table">
+            <h4 class="d-flex justify-content-between align-items-center mb-3" style="margin-bottom: 2rem;">
+                <span class="questions_heading" style="font-size: 3rem;">All Approved Tests</span>
+            </h4>
+            <ul class="list-group mb-3">
+                {% if message == ''%}
+                    {% set test_count = {'total': 1} %}
+                    {% for test in tests %}
+                        {% if test == tests[0] %}
+                            <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+                        {% else %}
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                        {% endif %}
+                            <div>
+                                <strong style="color: maroon;">Test Number: {{test_count.total}}</strong>
+                                <br>
+                                <div style="margin-top: 1rem !important;">
+                                    <strong style="font-size: larger;">Created By: {{test['admin_name']}}</strong>
+                                </div>
+                                <strong style="font-size: larger;">Test Subject:</strong> 
+
+                                <p style="font-size: larger; display: inline;">   {{test['test_subject']}}
+                                    <div style="float: right;">
+                                        <button class="btn button_question" type="submit" name="operation" value="{{test['test_no']}},View Test">View Test</button>
+                                        <button class="btn button_question" type="button" data-toggle="modal" data-target="#exampleModal-{{test.test_no}}">Launch Test</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal-{{test.test_no}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Confirm Action</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to launch the test "{{test['test_subject']}}" created by "{{test['admin_name']}}" ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float: left;">Close</button>
+                                                <button type="submit" class="btn btn-primary" name="operation" value="{{test['test_no']}},Launch Complete Test" style:focus="color: white;" formaction="/SuperAdmin_LaunchUserTest">Launch Complete Test</button>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- modal end here -->
+                                    </div>
+                                </p>
+                            </div>
+                            </li>
+                        {% if test_count.update({'total': test_count.total + 1}) %} {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+                    <div>
+                        <strong style="color: maroon; font-size: larger;">{{message}}</strong>
+                    </div>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="button_Questions_class" style="margin-bottom: 3rem;">
+            <button class="w-100 btn btn-primary button_view_question" type="submit" formaction="/SuperAdminTestFunctions">Go Back</button>
+        </div>
+    </form>
+    
+  </form>
+</div>
+
+{% endblock %}

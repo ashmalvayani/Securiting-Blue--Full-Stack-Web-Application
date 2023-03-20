@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/report_type" method="post">
+        <h3 class="form_heading">Hello {{admin_user.admin_name}}</h3>
+        <input type = "hidden" name = "test_number" value = "{{test_number}}">
+        <input type = "hidden" name = "SortBy" value = "{{SortByName}}">
+        <div class="button_manual">
+            {% set report = 'Individual Report'%}
+            <button name="operation" value="{{report}}" type="submit" class="btn btn-info btn_edit" style="color: black ; margin-top: 5%;font-size: 2rem; font-weight: bolder;">
+                Individual Report
+            </button>
+        </div>
+        <div class="button_manual">
+            {% set report = 'Collective Report'%}
+            <button name="operation" value="{{report}}" type="submit" class="btn btn-info btn_edit" style="color: black ; font-size: 2rem; font-weight: bolder;">
+                Collective Report
+            </button>
+        </div>
+
+        <div id="formFooter" style="margin-top: 4rem;">
+          <div class="button_Questions_class" style="margin-bottom: 0rem;">
+            <button class="w-100 btn btn-primary button_view_question button_go_back" name="operation" value="View Results" type="submit" formaction="/TestFunctions">Go Back</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

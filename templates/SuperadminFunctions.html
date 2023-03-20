@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/SuperAdminTestFunctions" method="post">
+        <h3 class="form_heading">Hello {{super_admin_user.super_admin_name}}!</h3>
+        <div class="button_manual">
+            {% set fname = 'Show All Tests'%}
+            <button name="operation" value="{{fname}}" type="submit" class="btn btn-info btn_edit" style="color: black ; margin-top: 5%;font-size: 2rem; font-weight: bolder;">
+                Show All Tests
+            </button>
+        </div>
+        <div class="button_manual">
+            {% set fname = 'View Pending Tests'%}
+            <button name="operation" value="{{fname}}" type="submit" class="btn btn-info btn_edit" style="color: black ; font-size: 2rem; font-weight: bolder;">
+                View Pending Tests
+            </button>
+            <br><br>
+        </div>
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter"></div>
+  
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <h3>Test - {{test_questions[0].test_subject}}</h3>
+    </div>
+    <hr>
+    
+    <form action="/UserTests" method="post">
+        {% set question_count = {'total': 0} %}
+        {% for question in test_questions %}
+        <div class="row" style="margin-top: 1rem;">
+            <p>{{question.question_text}}</p>
+            {% for scene in scenarios%}
+                {% if question.question_no == scene.question_no %}
+                {% set fname = 'option_' + question.question_no|string %}
+                <input id="scenario_option" type="radio" value = "{{scene.scenario_id}}" name= {{fname}} required>
+                <label for="option">{{scene.scenario_options}}</label>
+                <br>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% if question_count.update({'total': question_count.total + 1}) %} {% endif %}
+        <hr>
+        {% endfor %}
+
+        <button type="submit" class="btn-primary button_view_question button_submit_test" onclick="myfun()" name="count_of_ques" value="{{question_count.total}}">Submit Test</button>
+    </form>
+</div>
+
+<script>
+    function myFunc(){
+        alert("Answers for this test have been recorded!")
+    }
+</script>
+
+{% endblock %}

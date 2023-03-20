@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container details">
+    <form action="/report_type" method="post" class="view_question_form_class">
+        <div class="col-md-5 col-lg-4 order-md-last table">
+            {% if length_details != 0 %}
+            <h4 class="d-flex justify-content-between align-items-center mb-3" style="margin-bottom: 2rem;">
+                <span class="questions_heading">Test - {{details[0]['test_subject']}}</span> 
+            </h4>
+            {% endif %}
+            <ul class="list-group mb-3">
+                {% for DEDUCTION in Individual_REPORT %}
+                {% if DEDUCTION == Individual_REPORT[0] %}
+                        <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+                    {% else %}
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                    {% endif %}
+                      <div>
+                          <strong style="color: maroon;">DEDUCTION NAME: {{DEDUCTION['DEDUCTION']}}</strong>
+                          <p style="margin-top: 0.5rem; font-size: larger;">Employees is {{DEDUCTION['PERCENTAGE']}}% {{DEDUCTION['DEDUCTION']}} according to this test</p>
+                      </div>
+                      </li>
+              {% endfor %}
+                    </ul>
+                    <ul class="list-group mb-3">
+              {% if length_details != 0 %}
+                {% for detail in details %}
+                    <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+                        <strong style="color: black; font-size: larger;">Question #{{detail['question_no']}}: {{detail['question_text']}}
+                        </strong>
+                    </li>
+                    <br>
+                                <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 1px solid #333;">
+                                <div>
+                                    <br>
+                                    <strong style="color: maroon;">Scenario #{{detail['scenario_id']}}</strong>
+                                    <p style="font-size: larger;"></p>{{detail['scenario_options']}}</p>
+                                    <hr>
+                                </div>
+                                <div>
+                                <strong style="color: maroon;">Deduction for scenario #{{detail['scenario_id']}}</strong>
+                                <p style="font-size: larger;">{{detail['deduction']}}</p>
+                                </div>
+                                </li>
+                                <br>
+                {% endfor %}
+              {% else %}
+                <h1>This individual has no input to the test report</h1>
+              {% endif%}
+                    </ul>
+                </div>
+        <hr>
+        
+        {% set view = 'Go Back' %}
+        <!-- button-question-add-form -->
+        <input type = "hidden" name = "test_number" value = "{{test['test_no']}}">
+        <input type = "hidden" name = "operation" value = "Individual Report">
+        <input type = "hidden" name = "SortBy" value = "Safe">
+        <button class="w-100 btn btn-primary button_view_question" name="operation" value="{{view}}" type="submit">Go Back</button>
+    </form>
+</div>
+
+{% endblock %}

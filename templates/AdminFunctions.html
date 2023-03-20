@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/TestFunctions" method="post">
+        <h3 class="form_heading">Hello {{admin_user.admin_name}}</h3>
+        <div class="button_manual">
+            {% set fname = 'Create Test'%}
+            <button name="operation" value="{{fname}}" type="submit" class="btn btn-info btn_edit" style="color: black ; margin-top: 5%;font-size: 2rem; font-weight: bolder;">
+                Create Test
+            </button>
+        </div>
+        <div class="button_manual">
+            {% set fname = 'Modify Test'%}
+            <button name="operation" value="{{fname}}" type="submit" class="btn btn-info btn_edit" style="color: black ; font-size: 2rem; font-weight: bolder;">
+                Modify Test
+            </button>
+        </div>
+        <div class="button_manual">
+            {% set fname = 'View Results'%}
+            <button name="operation" value="{{fname}}" type="submit" class="btn btn-info btn_edit" style="color: black ;margin-bottom: 5%; font-size: 2rem; font-weight: bolder;">
+                View Results
+            </button>
+        </div>
+        <p style="color: red;">{{message}}</p>
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+      </div>
+  
+    </div>
+  </div>
+
+{% endblock %}

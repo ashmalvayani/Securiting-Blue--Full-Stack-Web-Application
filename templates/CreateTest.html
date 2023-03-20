@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/Questions" method="post" name="myForm">
+        <h3 class="form_heading">Create New Test</h3>
+
+        <input type="text" id="login" class="fadeIn second" name="test_subject" placeholder="Enter Test Subject">
+        <input type="submit" class="fadeIn fourth" value="Continue" style="margin-top: 3rem;">
+
+        <div id="formFooter" style="margin-top: 4rem;">
+          <div class="button_Questions_class" style="margin-bottom: 0rem;">
+            <button class="w-100 btn btn-primary button_view_question button_go_back" name="operation" value="View Results" type="submit" formaction="/adminFunctions">Go Back</button>
+          </div>
+        </div>
+      </form>
+  
+    </div>
+  </div>
+
+
+{% endblock %}

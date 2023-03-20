@@ -1,0 +1,323 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="checkout_container">
+    <div class="col-md-7 col-lg-8 form_container">
+        <h1 class="mb-3 sub_questions">Subject - {{test_sub}}</h4>
+        <form class="needs-validation" novalidate=""  method="post" action="/SubQuestions" name="myForm">
+          <br>
+          <div class="row g-3">
+            <div class="col-sm-12">
+              <label for="Question" class="form-label sub_questions_label">Enter Question</label>
+              <br color="black">
+              <textarea class="form-control form_text_area" name="Question" id="" cols="30" rows="5" placeholder="Enter your question here..."></textarea>
+            </div>
+            <!-- something different -->
+
+            <!-- <div class="container"> -->
+              <div class="col-sm-12">
+            <label for="Question" class="form-label sub_questions_label">Departments to which the Question is related</label>
+            <div class="input-group has-validation form-dd-deduction">
+              <input type="text" class="form-control" placeholder="Enter your department name here ..." required="" id = "NewDepartment">
+            </div>
+            <div id="" style="margin-top: 2rem;">
+              <button type="button" class="btn btn-info btn-lg btn-block" onclick="SendToDb()">Add Department</button>
+            </div>
+            <div class="department_form">
+              <ul id = "FromJson"></ul>
+            </div>
+            <div class="col-sm-12">
+                <hr class="my-4" style="color: black; margin-top: 5rem;">
+              <label for="Contact" class="form-label form-scenario">Enter Scenario # 01</label>
+              <div class="input-group has-validation form-sc-scenario">
+                <input type="text" class="form-control"   placeholder="Enter your scenario here ..." required="" name="Scenario1">
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+                <label for="Contact" class="form-label form-scenario">Deduction for Scenario # 01</label>
+                <div class="input-group has-validation form-dd-deduction">
+                  <input type="text" class="form-control"   placeholder="Enter your deduction here ..." required="" id = "Deduction1" name="Deduction1">
+                </div>
+            </div>
+
+              <div class="col-sm-12">
+                <hr class="my-4" style="color: black; margin-top: 4rem;">
+                <label for="Contact" class="form-label form-scenario">Enter Scenario # 02</label>
+                <div class="input-group has-validation form-sc-scenario">
+                  <input type="text" class="form-control"   placeholder="Enter your scenario here ..." required="" name="Scenario2">
+                </div>
+              </div>
+  
+              <div class="col-sm-12">
+                  <label for="Contact" class="form-label form-scenario">Deduction for Scenario # 02</label>
+                  <div class="input-group has-validation form-dd-deduction">
+                    <input type="text" class="form-control"   placeholder="Enter your deduction here ..." required="" id = "Deduction2" name="Deduction2">
+                  </div>
+              </div>
+
+              <div class="col-sm-12">
+                <hr class="my-4" style="color: black; margin-top: 4rem;">
+                <label for="Contact" class="form-label form-scenario">Enter Scenario # 03</label>
+                <div class="input-group has-validation form-sc-scenario">
+                  <input type="text" class="form-control" placeholder="Enter your scenario here ..." required="" name="Scenario3">
+                </div>
+              </div>
+  
+              <div class="col-sm-12">
+                  <label for="Contact" class="form-label form-scenario">Deduction for Scenario # 03</label>
+                  <div class="input-group has-validation form-dd-deduction">
+                    <input type="text" class="form-control"   placeholder="Enter your deduction here ..." required="" id = "Deduction3" name="Deduction3">
+                  </div>
+              </div>
+
+              <div class="col-sm-12">
+                <hr class="my-4" style="color: black; margin-top: 4rem;">
+                <label for="Contact" class="form-label form-scenario">Enter Scenario # 04</label>
+                <div class="input-group has-validation form-sc-scenario">
+                  <input type="text" class="form-control placeholder_form"   placeholder="Enter your scenario here ..." required="" name="Scenario4">
+                </div>
+              </div>
+  
+              <div class="col-sm-12">
+                  <label for="Contact" class="form-label form-scenario">Deduction for Scenario # 04 </label>
+                  <div class="input-group has-validation form-dd-deduction">
+                    <input type="text" class="form-control" placeholder="Enter your deduction here ..." required="" id = "Deduction4" name="Deduction4">
+                  </div>
+              </div>
+
+              <div class="col-sm-12">
+                <hr class="my-4" style="color: black; margin-top: 4rem;">
+                <label for="Contact" class="form-label form-scenario">Enter Scenario # 05</label>
+                <div class="input-group has-validation form-sc-scenario">
+                  <input type="text" class="form-control" placeholder="Enter your scenario here ..." required="" name="Scenario5">
+                </div>
+              </div>
+  
+              <div class="col-sm-12">
+                  <label for="Contact" class="form-label form-scenario">Deduction for Scenario # 05</label>
+                  <div class="input-group has-validation form-dd-deduction">
+                    <input type="text" class="form-control" placeholder="Enter your deduction here ..." required="" id = "Deduction5" name="Deduction5">
+                  </div>
+              </div>
+          </div>
+
+
+        <div class="">
+          <button class="btn btn-primary button_go_back_question" name="operation" value="View Results" type="submit" formaction="/adminFunctions">Go back</button>
+
+          <div class="question_button_common">
+            {% set add_question = 'add question' %}
+            <button class="btn btn-primary question_button" name="operation" value="{add_question}}" type="submit" onclick="return myfunc()">Add Question</button>
+
+            {% set complete_task = 'complete test' %}
+            <button class="btn btn-primary complete_button" name="operation" value="{{complete_task}}" type="submit" onclick="return myfunc2()">Complete Test</button>
+          </div>
+          
+          
+        </div>
+
+        {% for Department in Departments %}
+          <input type="hidden" class="pcds" value = "{{Department['department_name']}}">
+        {% endfor %}
+
+        {% for Deduction in Deductions %}
+          <input type="hidden" class="pcnds" value = "{{Deduction['deduction']}}">
+        {% endfor %}
+        </form>
+      </div>
+    </div>
+</body>
+
+
+<script>
+  function myfunc(){
+    var ques = myForm.Question.value
+    var sce1 = myForm.Scenario1.value
+    var dd1 = myForm.Deduction1.value
+    var sce2 = myForm.Scenario2.value
+    var dd2 = myForm.Deduction2.value
+
+    if(ques == ''){
+      alert("Please enter a question")
+      return false
+    }
+    if(sce1 == '' ||  dd1 == ''){
+      alert("Please enter a valid response for scenario 1")
+      return false
+    }
+    if(sce2 == '' ||  dd2 == ''){
+      alert("Please enter a valid response for scenario 2")
+      return false
+    }
+
+    alert("Question Added!")
+    return true
+  }
+
+  function myfunc2(){
+    var ques = myForm.Question.value
+    var sce1 = myForm.Scenario1.value
+    var dd1 = myForm.Deduction1.value
+    var sce2 = myForm.Scenario2.value
+    var dd2 = myForm.Deduction2.value
+
+    if(ques == ''){
+      alert("Please enter a question")
+      return false
+    }
+    if(sce1 == '' ||  dd1 == ''){
+      alert("Please enter a valid response for scenario 1")
+      return false
+    }
+    if(sce2 == '' ||  dd2 == ''){
+      alert("Please enter a valid response for scenario 2")
+      return false
+    }
+    if (dep == '')
+    {
+      console.log(dep)
+      alert("Add atleast one Department")  
+      return false
+    }
+    alert("You have created the Test successfully!")
+    return true
+  }
+  $(document).ready(function () {
+
+  });
+  function SendToDb() {
+
+      var newdepartment = $("#NewDepartment").val();
+      document.getElementById("NewDepartment").value = '';
+      document.getElementById("FromJson").innerHTML = ''
+          $.ajax({
+              method: 'POST',
+              url: '/SendDataToDb',
+              data: {
+                  'NewDepartment': newdepartment
+              },
+              type:'POST',
+              success: function (result) {
+                $(result).each(function (index, item) {
+                        $("#FromJson").append($('<li>' + item.DepartmentName + '<span class="close">&times;</span></li>'));
+                    });
+                    var closebtns = document.getElementsByClassName("close");
+                    var i;
+                    for (i = 0; i < closebtns.length; i++) 
+                    {
+                      closebtns[i].addEventListener("click", function() {
+                        this.parentElement.style.display = 'none';
+                        removedepartment = this.parentElement.innerHTML 
+                        removedepartment = removedepartment.substring(0,removedepartment.length-28);
+                        $.ajax({
+                            method: 'POST',
+                            url: '/RemoveDataFromDb',
+                            data: {
+                                'RemoveDepartment': removedepartment
+                            },
+                            type:'POST',
+                            success: function (result) {
+                              console.log(result);
+                            },
+                            failure: function (result) {
+                                console.log(result);
+                            }
+                        });
+                      });
+                    }
+                    console.log(result)
+                },
+              failure: function (result) {
+                  // console.log(result);
+              }
+          });
+        }
+  function autocomplete(inp, arr) {
+  var currentFocus;
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      this.parentNode.appendChild(a);
+      for (i = 0; i < arr.length; i++) {
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          b = document.createElement("DIV");
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          b.addEventListener("click", function(e) {
+              inp.value = this.getElementsByTagName("input")[0].value;
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        currentFocus++;
+        addActive(x);
+      } else if (e.keyCode == 38) {
+        currentFocus--;
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        e.preventDefault();
+        if (currentFocus > -1) {
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    if (!x) return false;
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+var availableDepartments = document.getElementsByClassName("pcds");
+var availableDeductions = document.getElementsByClassName("pcnds");
+var i=0;
+var value1=[]
+for (i=0; i< availableDepartments.length;i++) {
+		  value1.push(availableDepartments[i].value);
+	  }
+
+var value2=[]
+for (i=0; i< availableDeductions.length;i++) {
+    value2.push(availableDeductions[i].value);
+    }
+
+autocomplete(document.getElementById("NewDepartment"), value1);
+autocomplete(document.getElementById("Deduction1"), value2);
+autocomplete(document.getElementById("Deduction2"), value2);
+autocomplete(document.getElementById("Deduction3"), value2);
+autocomplete(document.getElementById("Deduction4"), value2);
+autocomplete(document.getElementById("Deduction5"), value2);
+</script>
+
+{% endblock %}

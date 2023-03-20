@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Securing Blue Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href= "{{url_for('static', filename='css/style.css')}}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="js/script.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.2.27/jquery.autocomplete.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse nav_header" >
+  <div class="container-fluid ">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{url_for('Home')}}" style="font-size: larger;">SecuringBlueProject
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{url_for('Home')}}">Home</a></li>
+    </ul>
+    <span class="caret"></span>
+    
+    <ul class="nav navbar-nav navbar-right navbarr">
+      {% if (not session.loggedin) and (not session.super_loggedin) %}
+      <div class="dropdownn">
+        <button class="dropbtn">Admin SignUp<i class="fa fa-caret-down" style="margin-left: 1rem;"></i></button>
+        <div class="dropdownn-content">
+          <a href="{{url_for('AdminSignup')}}"><span class="glyphicon glyphicon-user" style="margin-right: 0.5rem;"></span>Admin Signup</a>
+          <a href="{{url_for('AdminLogin')}}"><span class="glyphicon glyphicon-log-in" style="margin-right: 0.5rem;"></span> Admin Login</a>
+        </div>
+      </div>
+
+      <div class="dropdownn">
+        <button class="dropbtn">Super Admin SignUp<i class="fa fa-caret-down" style="margin-left: 1rem;"></i></button>
+        <div class="dropdownn-content">
+          <a href="{{url_for('SuperAdminSignUp')}}"><span class="glyphicon glyphicon-user" style="margin-right: 0.5rem;"></span>Super Admin Signup</a>
+          <a href="{{url_for('SuperAdminLogin')}}"><span class="glyphicon glyphicon-log-in" style="margin-right: 0.5rem;"></span>Super Admin Login</a>
+        </div>
+      </div>
+        
+      {% else %}
+      <div class=" nav_logout">
+        <a href= "{{url_for('logout')}}" ><span class="glyphicon glyphicon-user"></span> Log out</a>
+      </div>
+      
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+</body>
+
+
+
+{% block body %} {% endblock %}
+
+
+<!-- Footer -->
+<!-- <footer class="page-footer font-small end"> -->
+
+<!-- Copyright -->
+<!-- <div class="footer-copyright text-center py-3 foooter_container">© 2022 Copyright:
+    <a href="#"> SecuringBlueProject.com</a>
+</div> -->
+<!-- Copyright -->
+
+<!-- </footer> -->
+
+<!-- yeh change wala footer hai ooper original hai  -->
+
+<!-- <div class="footer end">
+  <footer class="py-5"> -->
+    <!-- <div class="row"> -->
+      <!-- <div class="col-2">
+        <div class="footer-copyright text-center py-3 foooter_container">© 2022 Copyright:
+      </div> -->
+    <!-- </div> -->
+  <!-- </footer> -->
+</div>
+
+
+<!-- Footer -->
+</html>

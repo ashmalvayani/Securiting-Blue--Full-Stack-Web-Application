@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/SuperAdminSignUp" method="post" name="myForm" onsubmit="check()">
+        <h3 class="form_heading">Super Admin Signup</h3>
+        <input type="text" id="name" class="fadeIn second" name="name" placeholder="Name" style="margin-top: 2rem;" required>
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email" style="margin-top: 0rem;" required>
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" style="margin-top: 0rem;" required>
+        <br>
+        <input type="hidden" name="message" value="{{message}}"> <span style="color: red; margin-top: 0.7rem !important;">{{message}}</span>
+        <input type="submit" class="fadeIn fourth" value="Sign Up" style="margin-top: 3rem;">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter"></div>
+  
+    </div>
+  </div>
+
+  <script>
+      function check(){
+          var x = myForm.name.value
+          var y = myForm.email.value
+          var z = myForm.password.value
+          var msg = message
+
+          if(x!= '' && y!= '' && z!= '' && msg != ''){
+              alert('Account Created')
+          }
+      }
+  </script>
+
+{% endblock %}

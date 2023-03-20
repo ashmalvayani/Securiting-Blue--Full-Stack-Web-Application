@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container details">
+    <form action="/IndividualOrCollective" method="post">
+        <div class="col-md-5 col-lg-4 order-md-last table">
+            <h4 class="d-flex justify-content-between align-items-center mb-3" style="margin-bottom: 2rem;">
+                <span class="questions_heading">TEST - {{test['test_subject']}}</span>
+            </h4>
+            <ul class="list-group mb-3">
+                
+                {% for DEDUCTION in GROUP_REPORT %}
+                  {% if DEDUCTION == GROUP_REPORT[0] %}
+                          <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+                      {% else %}
+                          <li class="list-group-item d-flex justify-content-between lh-sm">
+                      {% endif %}
+                        <div>
+                            <strong style="color: maroon;">DEDUCTION NAME: {{DEDUCTION['DEDUCTION']}}</strong>
+                            <p style="margin-top: 0.5rem; font-size: larger;">Employees are {{DEDUCTION['PERCENTAGE']}}% {{DEDUCTION['DEDUCTION']}} according to this test</p>
+                        </div>
+                        </li>
+                {% endfor %}
+                    </ul>
+                </div>
+                <div class="button_Questions_class" style="margin-bottom: 4rem;">
+                    <button class="w-100 btn btn-primary button_view_question" name="test_number" value="{{test['test_no']}}" type="submit">Go Back</button>
+                </div>
+    </form>
+    
+  </form>
+</div>
+
+{% endblock %}

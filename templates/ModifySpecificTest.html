@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container details">
+    <form action="/choose_option" method="post">
+        <div class="col-md-5 col-lg-4 order-md-last table">
+            <h4 class="d-flex justify-content-between align-items-center mb-3" style="margin-bottom: 2rem;">
+                <span class="questions_heading">Test - {{test['test_subject']}}</span> 
+            </h4>
+            <ul class="list-group mb-3">
+                
+                {% for question in questions %}
+    
+                    {% if question.question_no == 1 %}
+                        <li class="list-group-item d-flex justify-content-between lh-sm" style="border-top: 3px solid #333">
+    
+                    {% else %}
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                    {% endif %}
+                        <div>
+                            <input type = "hidden" name = "test_no" value = {{question.test_no}}>
+                            <input type = "hidden" name = "question_no" value = {{question.question_no}}>
+                            <strong style="color: maroon;">Question # {{question['question_no']}}</strong>
+                            <p style="margin-top: 0.5rem; font-size: larger;">{{question['question_text']}}
+                                <span style="float: right;">
+                                    {% set view_question = 'view_question ' + question['test_no']|string + ' ' + question['question_no']|string %}
+                                    <button class="btn button_question" type="submit" name="operation" value="{{view_question}}">View Question</button>
+                                    {% set update_question = 'update_question ' + question['test_no']|string + ' ' + question['question_no']|string %}
+                                    <button class="btn button_question" type="submit" name="operation" value="{{update_question}}">Update Question</button>
+                                </span>
+                            </p>
+                        </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+    
+        <div class="button_Questions_class">
+            {% set button_name = 'Add_Question ' + questions[0].test_no|string + ' ' + 0|string %}
+            <button class="w-100 btn btn-lg button-question-add-form" name="operation" value="{{button_name}}" type="submit">Add Question</button>
+            {% set button_name = 'Complete_Changes' + ' ' + questions[0].test_no|string + ' ' + 0|string %}
+            <button class="w-100 btn btn-lg button-question-complete-form" type="submit" name="operation" value="{{button_name}}">Update Test</button>
+        </div>
+        <hr>
+    </form>
+</div>
+
+{% endblock %}

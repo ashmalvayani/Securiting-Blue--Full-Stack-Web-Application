@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/adminSignup" method="post">
+        <h3 class="form_heading">Admin Signup</h3>
+        <input type="text" id="name" class="fadeIn second" name="name" placeholder="Name" style="margin-top: 2rem;">
+        <input type="text" id="designation" class="fadeIn second" name="designation" placeholder="Designation" style="margin-top: 0rem;">
+        <input type="text" id="department" class="fadeIn second" name="department" placeholder="Department" style="margin-top: 0rem;">
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email" style="margin-top: 0rem;">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" style="margin-top: 0rem;">
+        <input type="submit" class="fadeIn fourth" value="Sign Up" style="margin-top: 3rem;">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
+
+{% endblock %}

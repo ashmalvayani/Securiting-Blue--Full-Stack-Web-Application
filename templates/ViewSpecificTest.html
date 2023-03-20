@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>
+  
+      <!-- Login Form -->
+      <form action="/ViewSpecificTest" method="post" name="myForm" class = "bottom_padding">
+        <h3 class="form_heading">Select Test to View Report </h3>
+        {% for test in tests %}
+        <div class="button_manual">
+            <button  type="submit" name = "test_number" value="{{test['test_no']}},{{SortByName}}" class="btn btn-info btn_edito" style="color: black ; font-size: 2rem; font-weight: bolder;">
+                {{test['test_subject']}}
+            </button>
+        </div>
+          {% endfor %}
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
+{% endblock %}

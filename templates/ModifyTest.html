@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">  
+      <!-- Icon -->
+      <div class="fadeIn first"></div>  
+      <!-- Login Form -->
+      <form action="/ModifySpecificTest" method="post" name="myForm" class = "bottom_padding">
+        <h3 class="form_heading">Select Test to Modify </h3>
+        <!-- <br> -->
+        <hr>
+        {% for test in tests %}
+        <div class="button_manual">
+            <button  type="submit" name = "test_number" value="{{test['test_no']}}" class="btn btn-secondary button_edit" style="font-size: 2rem; font-weight: bolder;">
+                {{test['test_subject']}}
+            </button>
+        </div>
+        {% endfor %}
+        <br>
+
+        <div id="formFooter" style="margin-top: 4rem;">
+          <div class="button_Questions_class" style="margin-bottom: 0rem;">
+            <button class="w-100 btn btn-primary button_view_question button_go_back" name="operation" value="View Results" type="submit" formaction="/adminFunctions">Go Back</button>
+          </div>
+        </div>
+      </form>
+  
+      
+  
+    </div>
+  </div>
+
+
+{% endblock %}
